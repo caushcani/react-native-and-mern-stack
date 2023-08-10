@@ -9,7 +9,17 @@ const Login = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       <Image source={login} style={styles.image} />
-      <Text style={styles.loginText}>Login</Text>
+      <View
+        style={{
+          display: "flex",
+        }}
+      >
+        <Text style={styles.loginText}>Welcome!</Text>
+        <Text style={styles.loginParagraph}>
+          please login or sign up tp continue to our app
+        </Text>
+      </View>
+
       <TextInput
         style={styles.input}
         onChangeText={(val) => setEmail(val)}
@@ -18,6 +28,7 @@ const Login = ({ navigation }: any) => {
       <TextInput
         style={styles.input}
         onChangeText={(val) => setPassword(val)}
+        secureTextEntry={true}
         placeholder="Password"
       />
       <Button
@@ -52,6 +63,10 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontSize: 20,
+    fontWeight: "bold",
+  },
+  loginParagraph: {
+    fontSize: 15,
   },
 
   text: {

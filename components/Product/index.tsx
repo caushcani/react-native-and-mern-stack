@@ -12,7 +12,7 @@ export const Product = (props: IProductProp) => {
   const { name, image, price, desc, onClick } = props;
 
   return (
-    <View style={styles.card}>
+    <View>
       <View
         style={{
           marginTop: 10,
@@ -24,36 +24,46 @@ export const Product = (props: IProductProp) => {
       <View
         style={{
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: 10,
         }}
       >
-        <Text>{name}</Text>
-        <Text>€{price}</Text>
-      </View>
-      <View>
+        <Text
+          style={{
+            fontWeight: "bold",
+          }}
+        >
+          {name}
+        </Text>
         <Text>{desc}</Text>
+        <Text
+          style={{
+            fontWeight: "bold",
+          }}
+        >
+          €{price}
+        </Text>
       </View>
-      <Button title="Details" textStyle={styles.text} onPress={() => {}} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "white",
-    height: 250,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 1,
-    shadowRadius: 2,
-    paddingLeft: 16,
-    paddingRight: 14,
-    // marginTop: 6,
-    // marginBottom: 6,
-    // marginLeft: 16,
-    // marginRight: 16,
-  },
+  // card: {
+  //   backgroundColor: "white",
+  //   height: 250,
+  //   shadowColor: "black",
+  //   shadowOffset: { width: 0, height: 0 },
+  //   shadowOpacity: 1,
+  //   shadowRadius: 2,
+  //   paddingLeft: 16,
+  //   paddingRight: 14,
+  //   // marginTop: 6,
+  //   // marginBottom: 6,
+  //   // marginLeft: 16,
+  //   // marginRight: 16,
+  // },
   text: {
     color: "white",
   },

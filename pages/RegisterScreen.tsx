@@ -10,7 +10,16 @@ export const Register = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       <Image source={login} style={styles.image} />
-      <Text style={styles.loginText}>Register</Text>
+      <View
+        style={{
+          display: "flex",
+        }}
+      >
+        <Text style={styles.registerText}>Welcome!</Text>
+        <Text style={styles.registerParagraph}>
+          please login or sign up tp continue to our app
+        </Text>
+      </View>
       <TextInput
         style={styles.input}
         onChangeText={(val) => setFullName(val)}
@@ -50,12 +59,14 @@ const styles = StyleSheet.create({
   input: {
     width: 300,
     height: 50,
-    // border: "2px solid red",
   },
-  loginText: {
+  registerText: {
     fontSize: 20,
+    fontWeight: "bold",
   },
-
+  registerParagraph: {
+    fontSize: 15,
+  },
   text: {
     fontSize: 16,
     lineHeight: 21,
