@@ -1,8 +1,20 @@
 import { View, Pressable, Text } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export const PlusMinusButton = () => {
+interface IPlusMinusButton {
+  onPress: (val: number) => void;
+}
+export const PlusMinusButton = (props: IPlusMinusButton) => {
+  const { onPress } = props;
+
   const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    if (onPress) {
+      onPress(count);
+    }
+  }, [count]);
+
   return (
     <View>
       <View
@@ -21,7 +33,13 @@ export const PlusMinusButton = () => {
             gap: 5,
           }}
         >
-          <Pressable onPress={() => setCount(count - 1)}>
+          <Pressable
+            onPress={() => {
+              if (count > 0) {
+                setCount(count - 1);
+              }
+            }}
+          >
             <Text style={{ color: "white" }}>-</Text>
           </Pressable>
         </View>

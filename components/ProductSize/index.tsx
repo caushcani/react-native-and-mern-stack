@@ -1,13 +1,13 @@
-import { View, Pressable, Text, StyleSheet } from "react-native";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import Entypo from "react-native-vector-icons/Entypo";
-interface ICheckboxButtonProp {
-  onPress: any;
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import React from "react";
+
+interface IProductSize {
   title: string;
   isActive: boolean;
+  onPress: (val: any) => void;
 }
 
-export const CheckboxButtoon = (props: ICheckboxButtonProp) => {
+export const ProductSize = (props: IProductSize) => {
   const { onPress, title, isActive } = props;
 
   const activeStyle = {
@@ -30,19 +30,6 @@ export const CheckboxButtoon = (props: ICheckboxButtonProp) => {
           alignItems: "center",
         }}
       >
-        {isActive ? (
-          <AntDesign
-            name={"checkcircleo"}
-            color={isActive ? "white" : "gray"}
-            size={24}
-          />
-        ) : (
-          <Entypo
-            name={"circle"}
-            color={isActive ? "white" : "gray"}
-            size={24}
-          />
-        )}
         <Text
           style={{
             color: isActive ? "white" : "gray",
@@ -59,10 +46,10 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 6,
-    width: "44%",
-    // paddingHorizontal: 32,
-    borderRadius: 10,
+    paddingVertical: 12,
+    width: 50,
+    height: 50,
+    borderRadius: 50,
     elevation: 3,
     backgroundColor: "black",
   },

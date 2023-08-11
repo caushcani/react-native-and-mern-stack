@@ -16,7 +16,7 @@ export const Category = (props: ICategoryProp) => {
           borderColor: "black",
           borderRadius: 20,
           backgroundColor: isActive ? "black" : "white",
-          padding: 15,
+          padding: 12,
           width: "auto",
         }}
       >

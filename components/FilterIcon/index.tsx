@@ -7,15 +7,12 @@ export const Filter = () => {
     <Pressable>
       <View
         style={{
-          flexDirection: "row",
-          alignItems: "center",
-          gap: 5,
           backgroundColor: "black",
-          padding: 20,
-          borderRadius: "50%",
+          padding: 8,
+          borderRadius: 50,
         }}
       >
-        <MaterialCommunityIcons name="filter-variant" size={30} color="white" />
+        <MaterialCommunityIcons name="filter-variant" size={22} color="white" />
       </View>
     </Pressable>
   );

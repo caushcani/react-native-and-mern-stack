@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { Categories } from "../components/Categories";
 import { Filter } from "../components/FilterIcon";
 import { InputIcon } from "../components/InputIcon";
 import { ProductPreview } from "../components/ProductPreview";
-import Test from "react-native-costoum-text-icon";
 import { Products } from "../components/Products";
 
 export const WelcomeScreen = () => {
@@ -13,18 +12,22 @@ export const WelcomeScreen = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={{ padding: 10 }}>
         {/* WELCOME TEXT */}
-        <View>
+        <View
+          style={{
+            marginVertical: 4,
+          }}
+        >
           <Text
             style={{
               fontWeight: "bold",
               fontSize: 25,
             }}
           >
-            Welcome
+            Welcome Legend,
           </Text>
           <Text
             style={{
-              fontSize: 25,
+              fontSize: 20,
               color: "gray",
             }}
           >
@@ -35,8 +38,11 @@ export const WelcomeScreen = () => {
         {/* SEARCH */}
         <View
           style={{
+            marginVertical: 4,
             flexDirection: "row",
             justifyContent: "space-between",
+            alignItems: "center",
+            gap: 8,
           }}
         >
           <InputIcon />
@@ -46,12 +52,12 @@ export const WelcomeScreen = () => {
         {/* PRODUCT PREVIEW */}
         <ProductPreview />
 
-        {/* CATEGORIES */}
         <Text
           style={{
             fontSize: 20,
             marginBottom: 10,
             fontWeight: "bold",
+            marginVertical: 4,
           }}
         >
           Categories
@@ -61,7 +67,7 @@ export const WelcomeScreen = () => {
         {/*TOP PRODUCTS */}
         <View
           style={{
-            marginTop: 15,
+            marginVertical: 8,
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "baseline",

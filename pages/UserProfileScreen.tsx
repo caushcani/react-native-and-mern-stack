@@ -238,6 +238,7 @@ export const UserProfile = () => {
           <Button
             title="Log Out"
             onPress={() => {}}
+            style={styles.button}
             textStyle={{ color: "white" }}
             icon={<Entypo name="log-out" color={"white"} size={28} />}
           />
@@ -251,12 +252,9 @@ const styles = StyleSheet.create({
   input: {
     padding: 5,
     borderBottomWidth: 1,
-    // borderRadius: 6,
     borderBottomColor: "black",
     width: "70%",
-    fontSize: 22,
-    textAlign: "center",
-    // backgroundColor: "white",
+    fontSize: 16,
   },
   profileText: {
     fontSize: 20,
@@ -270,5 +268,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#c5ccd6",
     padding: 10,
     borderRadius: 10,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 10,
+    elevation: 3,
+    width: "100%",
+    backgroundColor: "black",
   },
 });

@@ -1,43 +1,7 @@
 import React from "react";
 import { View, FlatList, StyleSheet, Dimensions } from "react-native";
 import { Product } from "../Product";
-
-const products = [
-  {
-    name: "Product1",
-    price: 10,
-    desc: "AHHAHA",
-    image:
-      "https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=",
-  },
-  {
-    name: "Product2",
-    price: 44,
-    desc: "AHHAHA",
-    image: "https://thumbs.dreamstime.com/b/blue-shoes-29507491.jpg",
-  },
-  {
-    name: "Product3",
-    price: 44,
-    desc: "AHHAHA",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXpFw_gLyuU9oWMKwtfe6wZNPebHCw2igrEN1-KWlLAq72revRb8BdXwHEHiEPjzL_Plo&usqp=CAU",
-  },
-  {
-    name: "Product4",
-    price: 44,
-    desc: "AHHAHA",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiuC33L8jcExGdubb8uvN2CS_1Hwrm8cRAOvs1ZExJlLyR-qmhxmJ1qYQ-blpQDBxm3_0&usqp=CAU",
-  },
-  {
-    name: "Product5",
-    price: 231,
-    desc: "AHHAHA",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvoCaue0gP0r76pUTGsSidtRS42U9085RZb7R-LzcEnSOXPI3sZ1z78RIdYs6ilLSoQXU&usqp=CAU",
-  },
-];
+import products from "../../utils/data.json";
 
 export const Products = () => {
   return (
@@ -55,6 +19,7 @@ export const Products = () => {
                   image={item.image}
                   name={item.name}
                   price={item.price}
+                  subtitle={item.subtitle}
                   desc={item.desc}
                   onClick={() => {}}
                 />

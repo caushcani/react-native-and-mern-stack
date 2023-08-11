@@ -1,69 +1,64 @@
-import { View, Text, Image, StyleSheet } from "react-native";
-import { Button } from "../Button";
+import { useNavigation } from "@react-navigation/native";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 
 interface IProductProp {
   name: string;
   image: string;
   price: number;
   desc: string;
+  subtitle: string;
   onClick: any;
 }
+
 export const Product = (props: IProductProp) => {
-  const { name, image, price, desc, onClick } = props;
+  const { name, image, price, desc, onClick, subtitle } = props;
+  const nav = useNavigation();
 
   return (
-    <View>
-      <View
-        style={{
-          marginTop: 10,
-          alignSelf: "center",
-        }}
-      >
-        <Image source={{ uri: image }} width={120} height={120} />
-      </View>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: 10,
-        }}
-      >
-        <Text
+    <Pressable
+      onPress={() =>
+        nav.navigate("ProductDetail", { name, image, price, desc, subtitle })
+      }
+    >
+      <View>
+        <View
           style={{
-            fontWeight: "bold",
+            marginTop: 10,
+            alignSelf: "center",
           }}
         >
-          {name}
-        </Text>
-        <Text>{desc}</Text>
-        <Text
+          <Image source={{ uri: image }} width={120} height={120} />
+        </View>
+        <View
           style={{
-            fontWeight: "bold",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: 10,
           }}
         >
-          €{price}
-        </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+            }}
+          >
+            {name}
+          </Text>
+          <Text>{subtitle}</Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+            }}
+          >
+            €{price}
+          </Text>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  // card: {
-  //   backgroundColor: "white",
-  //   height: 250,
-  //   shadowColor: "black",
-  //   shadowOffset: { width: 0, height: 0 },
-  //   shadowOpacity: 1,
-  //   shadowRadius: 2,
-  //   paddingLeft: 16,
-  //   paddingRight: 14,
-  //   // marginTop: 6,
-  //   // marginBottom: 6,
-  //   // marginLeft: 16,
-  //   // marginRight: 16,
-  // },
   text: {
     color: "white",
   },

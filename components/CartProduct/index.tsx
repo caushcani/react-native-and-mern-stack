@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
+import { Divider } from "../Divider";
 import { PlusMinusButton } from "../PlusMinusButton";
 
 interface ICartProduct {
@@ -7,9 +8,10 @@ interface ICartProduct {
   price: number;
   image: string;
   desc: string;
+  onQuantityChange: (val: number) => void;
 }
 export const CartProduct = (props: ICartProduct) => {
-  const { image, name, price, desc } = props;
+  const { image, name, price, desc, onQuantityChange } = props;
   return (
     <View
       style={[
@@ -58,8 +60,15 @@ export const CartProduct = (props: ICartProduct) => {
           flexDirection: "column-reverse",
         }}
       >
-        <PlusMinusButton />
+        <PlusMinusButton
+          onPress={(val) => {
+            if (onQuantityChange) {
+              onQuantityChange(val);
+            }
+          }}
+        />
       </View>
+      {/* <Divider color="gray" width={1} marginHorizontal={8} /> */}
     </View>
   );
 };
@@ -69,23 +78,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   card_template: {
-    // height: 90,
-    paddingVertical: 15,
-    // alignItems: "center",
-    // justifyContent: "center",
+    paddingVertical: 8,
     backgroundColor: "white",
-    borderRadius: 15,
-    shadowColor: "#e0e0e0",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 1,
-    shadowRadius: 8,
+    // borderRadius: 15,
+    // shadowCsolor: "#e0e0e0",
+    // shadowOffset: { width: 0, height: 0 },
+    // shadowOpacity: 1,
+    // shadowRadius: 8,
     elevation: 8,
     flexDirection: "row",
-    // paddingLeft: 16,
-    // paddingRight: 14,
+    paddingLeft: 16,
+    paddingRight: 14,
     marginTop: 6,
     marginBottom: 6,
-    // marginLeft: 16,
-    // marginRight: 16,
+    marginHorizontal: 8,
   },
 });

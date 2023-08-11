@@ -1,11 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import { View, StyleSheet, TextInput } from "react-native";
 
+//TODO:: add icon
 export const InputIcon = () => {
   return (
     <View style={styles.inputContainer}>
-      <AntDesign name="search1" style={styles.icon} size={20} />
       <TextInput
         style={styles.input}
         placeholder="Search..."
@@ -21,15 +20,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   input: {
-    padding: 10,
-    paddingStart: 30,
-    // borderWidth: 1,
+    padding: 8,
     borderRadius: 15,
     borderColor: "black",
     width: "100%",
-    fontSize: 22,
+    fontSize: 18,
     backgroundColor: "white",
-    // textAlign: "center",
   },
   icon: {
     position: "absolute",

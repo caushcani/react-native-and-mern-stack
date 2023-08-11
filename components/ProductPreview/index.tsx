@@ -79,11 +79,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
     flexDirection: "row",
-    // paddingLeft: 16,
-    // paddingRight: 14,
     marginTop: 6,
     marginBottom: 6,
-    // marginLeft: 16,
-    // marginRight: 16,
   },
 });

@@ -1,56 +1,29 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
 import {
   View,
-  Text,
   ScrollView,
   FlatList,
   StyleSheet,
   Dimensions,
+  Text,
 } from "react-native";
 import { Product } from "../components/Product";
-import { Slider } from "../components/Slider";
+import products from "../utils/data.json";
 
 export const Products = () => {
-  const products = [
-    {
-      name: "Product1",
-      price: 10,
-      desc: "AHHAHA",
-      image:
-        "https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=",
-    },
-    {
-      name: "Product2",
-      price: 44,
-      desc: "AHHAHA",
-      image: "https://thumbs.dreamstime.com/b/blue-shoes-29507491.jpg",
-    },
-    {
-      name: "Product3",
-      price: 44,
-      desc: "AHHAHA",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXpFw_gLyuU9oWMKwtfe6wZNPebHCw2igrEN1-KWlLAq72revRb8BdXwHEHiEPjzL_Plo&usqp=CAU",
-    },
-    {
-      name: "Product4",
-      price: 44,
-      desc: "AHHAHA",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiuC33L8jcExGdubb8uvN2CS_1Hwrm8cRAOvs1ZExJlLyR-qmhxmJ1qYQ-blpQDBxm3_0&usqp=CAU",
-    },
-    {
-      name: "Product5",
-      price: 231,
-      desc: "AHHAHA",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvoCaue0gP0r76pUTGsSidtRS42U9085RZb7R-LzcEnSOXPI3sZ1z78RIdYs6ilLSoQXU&usqp=CAU",
-    },
-  ];
   return (
     <View>
       <ScrollView>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            marginVertical: 8,
+            marginLeft: 6,
+          }}
+        >
+          Clothes
+        </Text>
         {products && (
           <FlatList
             contentContainerStyle={{ paddingBottom: 100 }}
@@ -61,6 +34,7 @@ export const Products = () => {
                 <View style={styles.listItem}>
                   <Product
                     key={item.name}
+                    subtitle={item.subtitle}
                     image={item.image}
                     name={item.name}
                     price={item.price}

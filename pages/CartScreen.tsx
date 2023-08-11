@@ -1,48 +1,183 @@
-import React from "react";
-import { View, Text, FlatList } from "react-native";
+import React, { useState } from "react";
+import { View, Text, FlatList, StyleSheet, SafeAreaView } from "react-native";
+import { Button } from "../components/Button";
 import { CartProduct } from "../components/CartProduct";
+import { Divider } from "../components/Divider";
+
+const productsInCart = [
+  {
+    name: "Product4",
+    price: 44,
+    desc: "AHHAHA",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiuC33L8jcExGdubb8uvN2CS_1Hwrm8cRAOvs1ZExJlLyR-qmhxmJ1qYQ-blpQDBxm3_0&usqp=CAU",
+  },
+  {
+    name: "Product5",
+    price: 231,
+    desc: "AHHAHA",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvoCaue0gP0r76pUTGsSidtRS42U9085RZb7R-LzcEnSOXPI3sZ1z78RIdYs6ilLSoQXU&usqp=CAU",
+  },
+];
 
 export const CartScreen = () => {
-  const productsInCart = [
-    {
-      name: "Product4",
-      price: 44,
-      desc: "AHHAHA",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiuC33L8jcExGdubb8uvN2CS_1Hwrm8cRAOvs1ZExJlLyR-qmhxmJ1qYQ-blpQDBxm3_0&usqp=CAU",
-    },
-    {
-      name: "Product5",
-      price: 231,
-      desc: "AHHAHA",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvoCaue0gP0r76pUTGsSidtRS42U9085RZb7R-LzcEnSOXPI3sZ1z78RIdYs6ilLSoQXU&usqp=CAU",
-    },
-  ];
+  const [total, setTotal] = useState(0);
+  const itemsString = total > 1 ? "items" : "item";
+
   return (
-    <View>
-      <Text
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+      }}
+    >
+      <View
         style={{
-          fontSize: 20,
-          fontWeight: "bold",
+          backgroundColor: "white",
+          justifyContent: "space-between",
+          flex: 1,
+          marginBottom: 80,
         }}
       >
-        My Cart
-      </Text>
-      <FlatList
-        data={productsInCart}
-        renderItem={({ item }) => {
-          console.log(item);
-          return (
-            <CartProduct
-              name={item.name}
-              price={item.price}
-              image={item.image}
-              desc={item.desc}
-            />
-          );
-        }}
-      />
-    </View>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            marginLeft: 16,
+          }}
+        >
+          My Cart
+        </Text>
+        <FlatList
+          data={productsInCart}
+          style={{}}
+          renderItem={({ item }) => {
+            return (
+              <CartProduct
+                name={item.name}
+                price={item.price}
+                image={item.image}
+                desc={item.desc}
+                onQuantityChange={(val) => setTotal(val)}
+              />
+            );
+          }}
+        />
+
+        <View
+          style={{
+            marginHorizontal: 8,
+            borderWidth: 1,
+            borderColor: "gray",
+            borderRadius: 10,
+          }}
+        >
+          <View
+            style={{
+              marginHorizontal: 8,
+              paddingVertical: 10,
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Subtotal:
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              $483
+            </Text>
+          </View>
+          <Divider color="gray" marginHorizontal={8} width={1} />
+          <View
+            style={{
+              marginHorizontal: 8,
+              paddingVertical: 10,
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Shipping:
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              $17
+            </Text>
+          </View>
+
+          <Divider color="gray" marginHorizontal={8} width={1} />
+
+          <View
+            style={{
+              marginHorizontal: 8,
+              paddingVertical: 10,
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Bag total:
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              $500
+            </Text>
+          </View>
+        </View>
+
+        <View
+          style={{
+            marginTop: 20,
+            alignItems: "center",
+          }}
+        >
+          <Button
+            title="Proceed to Checkout"
+            onPress={() => {}}
+            style={styles.button}
+            textStyle={{ color: "white" }}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 10,
+    elevation: 3,
+    width: "95%",
+    backgroundColor: "black",
+  },
+});
