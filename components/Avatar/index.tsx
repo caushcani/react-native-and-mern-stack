@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 
 const BATMAN = "https://www.pngarts.com/files/11/Avatar-PNG-Free-Download.png";
 export const Avatar = () => {
@@ -11,7 +11,7 @@ export const Avatar = () => {
       }}
     >
       <View>
-        <Image source={{ uri: BATMAN }} height={40} width={40} />
+        <Image source={{ uri: BATMAN }} style={{ height: 36, width: 36 }} />
       </View>
     </Pressable>
   );

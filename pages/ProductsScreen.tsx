@@ -8,46 +8,45 @@ import {
   Text,
 } from "react-native";
 import { Product } from "../components/Product";
+import { Color } from "../utils/Color";
 import products from "../utils/data.json";
 
 export const Products = () => {
   return (
     <View>
-      <ScrollView>
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "bold",
-            marginVertical: 8,
-            marginLeft: 6,
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "bold",
+          marginVertical: 8,
+          marginLeft: 6,
+        }}
+      >
+        Clothes
+      </Text>
+      {products && (
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 100 }}
+          numColumns={2}
+          data={products}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.listItem}>
+                <Product
+                  key={item.name}
+                  subtitle={item.subtitle}
+                  image={item.image}
+                  name={item.name}
+                  price={item.price}
+                  desc={item.desc}
+                  onClick={() => {}}
+                />
+              </View>
+            );
           }}
-        >
-          Clothes
-        </Text>
-        {products && (
-          <FlatList
-            contentContainerStyle={{ paddingBottom: 100 }}
-            numColumns={2}
-            data={products}
-            renderItem={({ item }) => {
-              return (
-                <View style={styles.listItem}>
-                  <Product
-                    key={item.name}
-                    subtitle={item.subtitle}
-                    image={item.image}
-                    name={item.name}
-                    price={item.price}
-                    desc={item.desc}
-                    onClick={() => {}}
-                  />
-                </View>
-              );
-            }}
-            keyExtractor={(item) => item.name}
-          />
-        )}
-      </ScrollView>
+          keyExtractor={(item) => item.name}
+        />
+      )}
     </View>
   );
 };
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   name: {
     fontWeight: "bold",
     fontSize: 16,
-    color: "black",
+    color: Color.black,
   },
   separator: {
     height: StyleSheet.hairlineWidth,
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
   listItem: {
     height: 200,
     width: Dimensions.get("window").width / 2 - 16,
-    backgroundColor: "white",
+    backgroundColor: Color.white,
     margin: 8,
     borderRadius: 10,
   },
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
     height: 150,
     margin: 5,
     borderRadius: 10,
-    backgroundColor: "green",
+    backgroundColor: Color.green,
   },
   detailsContainer: {
     paddingHorizontal: 16,

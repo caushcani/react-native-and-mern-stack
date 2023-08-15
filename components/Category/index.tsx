@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { Color } from "../../utils/Color";
 
 interface ICategoryProp {
   name: string;
@@ -13,16 +14,16 @@ export const Category = (props: ICategoryProp) => {
       <View
         style={{
           borderWidth: 1,
-          borderColor: "black",
+          borderColor: Color.black,
           borderRadius: 20,
-          backgroundColor: isActive ? "black" : "white",
-          padding: 12,
+          backgroundColor: isActive ? Color.black : Color.white,
+          padding: 8,
           width: "auto",
         }}
       >
         <Text
           style={{
-            color: isActive ? "white" : "black",
+            color: isActive ? Color.white : Color.black,
             fontWeight: "bold",
           }}
         >

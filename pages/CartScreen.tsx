@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet, SafeAreaView } from "react-native";
 import { Button } from "../components/Button";
 import { CartProduct } from "../components/CartProduct";
 import { Divider } from "../components/Divider";
+import { Color } from "../utils/Color";
 
 const productsInCart = [
   {
@@ -23,18 +24,17 @@ const productsInCart = [
 
 export const CartScreen = () => {
   const [total, setTotal] = useState(0);
-  const itemsString = total > 1 ? "items" : "item";
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: Color.white,
       }}
     >
       <View
         style={{
-          backgroundColor: "white",
+          backgroundColor: Color.white,
           justifyContent: "space-between",
           flex: 1,
           marginBottom: 80,
@@ -69,7 +69,7 @@ export const CartScreen = () => {
           style={{
             marginHorizontal: 8,
             borderWidth: 1,
-            borderColor: "gray",
+            borderColor: Color.gray,
             borderRadius: 10,
           }}
         >
@@ -97,7 +97,7 @@ export const CartScreen = () => {
               $483
             </Text>
           </View>
-          <Divider color="gray" marginHorizontal={8} width={1} />
+          <Divider color={Color.gray} marginHorizontal={8} width={1} />
           <View
             style={{
               marginHorizontal: 8,
@@ -123,7 +123,7 @@ export const CartScreen = () => {
             </Text>
           </View>
 
-          <Divider color="gray" marginHorizontal={8} width={1} />
+          <Divider color={Color.gray} marginHorizontal={8} width={1} />
 
           <View
             style={{
@@ -161,7 +161,7 @@ export const CartScreen = () => {
             title="Proceed to Checkout"
             onPress={() => {}}
             style={styles.button}
-            textStyle={{ color: "white" }}
+            textStyle={{ color: Color.white }}
           />
         </View>
       </View>
@@ -178,6 +178,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 3,
     width: "95%",
-    backgroundColor: "black",
+    backgroundColor: Color.black,
   },
 });

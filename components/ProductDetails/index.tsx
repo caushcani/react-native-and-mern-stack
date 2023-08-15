@@ -23,6 +23,7 @@ export default function ProductDetail({ navigation }: any) {
   const [selectedSize, setSelectedSize] = useState("S");
   const [like, setLike] = useState(false);
   const nav = useRoute<any>();
+
   const { desc, name, price, image } = nav.params;
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function ProductDetail({ navigation }: any) {
   }, [navigation]);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }} key={name + desc}>
       {/* IMAGE */}
       <View
         style={{
@@ -53,14 +54,13 @@ export default function ProductDetail({ navigation }: any) {
           backgroundColor: "white",
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
-          padding: 20,
+          padding: 18,
         }}
       >
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            paddingHorizontal: 6,
           }}
         >
           <View>

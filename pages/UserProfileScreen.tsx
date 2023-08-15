@@ -12,6 +12,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { Button } from "../components/Button";
+import { Color } from "../utils/Color";
 
 const USER_AVATAR =
   "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg";
@@ -21,7 +22,7 @@ export const UserProfile = () => {
 
   return (
     <ScrollView bounces={false}>
-      <View style={{ padding: 16, backgroundColor: "white" }}>
+      <View style={{ padding: 16, backgroundColor: Color.white }}>
         {/* IMAGE */}
         <View
           style={{
@@ -128,8 +129,7 @@ export const UserProfile = () => {
         </Text>
         <View
           style={{
-            borderColor: "gray",
-            // borderColor: "red",
+            borderColor: Color.gray,
             padding: 10,
             borderWidth: 1,
             borderRadius: 10,
@@ -151,7 +151,7 @@ export const UserProfile = () => {
               }}
             >
               <View style={styles.icon}>
-                <Entypo name="language" color={"black"} size={28} />
+                <Entypo name="language" color={Color.black} size={28} />
               </View>
               <Text style={styles.settingsText}>Language</Text>
             </View>
@@ -175,7 +175,7 @@ export const UserProfile = () => {
               }}
             >
               <View style={styles.icon}>
-                <Ionicons name="notifications" color={"black"} size={28} />
+                <Ionicons name="notifications" color={Color.black} size={28} />
               </View>
               <Text style={styles.settingsText}>Notification</Text>
             </View>
@@ -198,7 +198,7 @@ export const UserProfile = () => {
               }}
             >
               <View style={styles.icon}>
-                <Entypo name="moon" color={"black"} size={28} />
+                <Entypo name="moon" color={Color.black} size={28} />
               </View>
               <Text style={styles.settingsText}>Dark mode</Text>
             </View>
@@ -221,7 +221,11 @@ export const UserProfile = () => {
               }}
             >
               <View style={styles.icon}>
-                <AntDesign name="questioncircle" color={"black"} size={28} />
+                <AntDesign
+                  name="questioncircle"
+                  color={Color.black}
+                  size={28}
+                />
               </View>
               <Text style={styles.settingsText}>Help center</Text>
             </View>
@@ -239,8 +243,8 @@ export const UserProfile = () => {
             title="Log Out"
             onPress={() => {}}
             style={styles.button}
-            textStyle={{ color: "white" }}
-            icon={<Entypo name="log-out" color={"white"} size={28} />}
+            textStyle={{ color: Color.white }}
+            icon={<Entypo name="log-out" color={Color.white} size={28} />}
           />
         </View>
       </View>
@@ -252,14 +256,14 @@ const styles = StyleSheet.create({
   input: {
     padding: 5,
     borderBottomWidth: 1,
-    borderBottomColor: "black",
+    borderBottomColor: Color.black,
     width: "70%",
     fontSize: 16,
   },
   profileText: {
     fontSize: 20,
     alignSelf: "center",
-    color: "gray",
+    color: Color.gray,
   },
   settingsText: {
     fontWeight: "bold",
@@ -277,6 +281,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 3,
     width: "100%",
-    backgroundColor: "black",
+    backgroundColor: Color.black,
   },
 });

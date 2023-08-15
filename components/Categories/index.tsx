@@ -37,12 +37,13 @@ export const Categories = (props: ICategoriesProp) => {
     <View
       style={{
         flexDirection: "row",
-        gap: 5,
+        gap: 8,
       }}
     >
-      {categories.map((el) => {
+      {categories.map((el, index) => {
         return (
           <Category
+            key={index}
             name={el.name}
             isActive={el.name === selectedCategory}
             onPress={(el) => setSelectedCategory(el)}

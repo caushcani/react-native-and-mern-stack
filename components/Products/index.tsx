@@ -2,42 +2,81 @@ import React from "react";
 import { View, FlatList, StyleSheet, Dimensions } from "react-native";
 import { Product } from "../Product";
 import products from "../../utils/data.json";
+import { Color } from "../../utils/Color";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export const Products = () => {
-  return (
-    <View>
-      {products && (
-        <FlatList
-          contentContainerStyle={{ paddingBottom: 100 }}
-          numColumns={2}
-          data={products}
-          renderItem={({ item }) => {
-            return (
-              <View style={styles.listItem}>
-                <Product
-                  key={item.name}
-                  image={item.image}
-                  name={item.name}
-                  price={item.price}
-                  subtitle={item.subtitle}
-                  desc={item.desc}
-                  onClick={() => {}}
-                />
-              </View>
-            );
-          }}
-          keyExtractor={(item) => item.name}
-        />
-      )}
-    </View>
-  );
+interface IProducts {
+  horizontalList: boolean;
+}
+
+export const Products = (props: IProducts) => {
+  const { horizontalList } = props;
+  if (horizontalList) {
+    return (
+      <View>
+        {products && (
+          <FlatList
+            contentContainerStyle={{ paddingBottom: 100 }}
+            horizontal={true}
+            key={"unike"}
+            data={products}
+            renderItem={({ item, index }) => {
+              return (
+                <View style={styles.listItem} key={index}>
+                  <Product
+                    key={item.name}
+                    image={item.image}
+                    name={item.name}
+                    price={item.price}
+                    subtitle={item.subtitle}
+                    desc={item.desc}
+                    onClick={() => {}}
+                  />
+                </View>
+              );
+            }}
+            keyExtractor={(item) => item.name}
+          />
+        )}
+      </View>
+    );
+  } else {
+    return (
+      <View>
+        {products && (
+          <FlatList
+            contentContainerStyle={{ paddingBottom: 100 }}
+            numColumns={2}
+            key={"unike"}
+            data={products}
+            renderItem={({ item, index }) => {
+              return (
+                <View style={styles.listItem} key={index}>
+                  <Product
+                    key={item.name}
+                    image={item.image}
+                    name={item.name}
+                    price={item.price}
+                    subtitle={item.subtitle}
+                    desc={item.desc}
+                    onClick={() => {}}
+                  />
+                </View>
+              );
+            }}
+            keyExtractor={(item) => item.name}
+          />
+        )}
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
   name: {
     fontWeight: "bold",
     fontSize: 16,
-    color: "black",
+    color: Color.black,
   },
   separator: {
     height: StyleSheet.hairlineWidth,
@@ -51,7 +90,7 @@ const styles = StyleSheet.create({
   listItem: {
     height: 200,
     width: Dimensions.get("window").width / 2 - 16,
-    backgroundColor: "white",
+    backgroundColor: Color.white,
     margin: 3,
     borderRadius: 10,
   },
@@ -59,7 +98,7 @@ const styles = StyleSheet.create({
     height: 150,
     margin: 5,
     borderRadius: 10,
-    backgroundColor: "green",
+    backgroundColor: Color.green,
   },
   detailsContainer: {
     paddingHorizontal: 16,

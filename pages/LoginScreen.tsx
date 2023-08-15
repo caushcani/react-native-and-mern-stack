@@ -2,22 +2,36 @@ import { useState } from "react";
 import { View, Text, TextInput, Image, StyleSheet } from "react-native";
 import login from "../assets/imgs/login.jpg";
 import { Button } from "../components/Button";
+import LottieView from "lottie-react-native";
 
 const Login = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <View style={styles.container}>
-      <Image source={login} style={styles.image} />
-      <View
-        style={{
-          display: "flex",
-        }}
-      >
-        <Text style={styles.loginText}>Welcome!</Text>
-        <Text style={styles.loginParagraph}>
-          please login or sign up tp continue to our app
-        </Text>
+      <View>
+        <LottieView
+          source={require("../assets/animations/animation_llb1hsac.json")}
+          autoPlay
+          loop
+          style={{
+            width: "100%",
+            aspectRatio: 1,
+          }}
+        />
+      </View>
+
+      <View>
+        <View
+          style={{
+            display: "flex",
+          }}
+        >
+          <Text style={styles.loginText}>Welcome!</Text>
+          <Text style={styles.loginParagraph}>
+            please login or sign up tp continue to our app
+          </Text>
+        </View>
       </View>
 
       <TextInput

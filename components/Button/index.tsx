@@ -1,4 +1,5 @@
 import { Text, StyleSheet, Pressable, View } from "react-native";
+import { Color } from "../../utils/Color";
 
 interface IButtonProps {
   title: string;
@@ -34,6 +35,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 3,
     width: "80%",
-    backgroundColor: "black",
+    backgroundColor: Color.black,
   },
 });

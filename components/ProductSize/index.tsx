@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
+import { Color } from "../../utils/Color";
 
 interface IProductSize {
   title: string;
@@ -11,7 +12,7 @@ export const ProductSize = (props: IProductSize) => {
   const { onPress, title, isActive } = props;
 
   const activeStyle = {
-    backgroundColor: isActive ? "black" : "white",
+    backgroundColor: isActive ? Color.black : Color.white,
   };
 
   return (
@@ -19,7 +20,10 @@ export const ProductSize = (props: IProductSize) => {
       style={[
         styles.button,
         activeStyle,
-        { borderWidth: 1, borderBlockColor: isActive ? "black" : "gray" },
+        {
+          borderWidth: 1,
+          borderBlockColor: isActive ? Color.black : Color.gray,
+        },
       ]}
       onPress={onPress}
     >
@@ -32,7 +36,7 @@ export const ProductSize = (props: IProductSize) => {
       >
         <Text
           style={{
-            color: isActive ? "white" : "gray",
+            color: isActive ? Color.white : Color.gray,
           }}
         >
           {title}
@@ -51,6 +55,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 50,
     elevation: 3,
-    backgroundColor: "black",
+    backgroundColor: Color.black,
   },
 });

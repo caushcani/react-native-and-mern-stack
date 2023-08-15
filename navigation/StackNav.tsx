@@ -1,10 +1,8 @@
-import { StyleSheet } from "react-native";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import ProductDetail from "./components/ProductDetails";
-import { WelcomeScreen } from "./pages/WelcomeScreen";
+import ProductDetail from "../components/ProductDetails";
+import { WelcomeScreen } from "../pages/WelcomeScreen";
+import Login from "../pages/LoginScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +10,7 @@ const StackNav = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="Homee"
         component={WelcomeScreen}
         options={{
           headerShown: false,

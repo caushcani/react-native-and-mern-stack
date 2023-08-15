@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TextInput } from "react-native";
+import { Color } from "../../utils/Color";
 
 //TODO:: add icon
 export const InputIcon = () => {
@@ -22,14 +23,14 @@ const styles = StyleSheet.create({
   input: {
     padding: 8,
     borderRadius: 15,
-    borderColor: "black",
+    borderColor: Color.black,
     width: "100%",
     fontSize: 18,
-    backgroundColor: "white",
+    backgroundColor: Color.white,
   },
   icon: {
     position: "absolute",
-    color: "black",
+    color: Color.black,
     paddingHorizontal: 5,
   },
 });
