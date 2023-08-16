@@ -16,6 +16,7 @@ class ProductController {
       result: true,
     });
   };
+
   static getAllProducts = async (req, res, next) => {
     const allProducts = await Product.find();
 
@@ -24,7 +25,9 @@ class ProductController {
         products: allProducts
     })
   };
+
   static deleteProduct = async (req, res, next) => {};
+  
   static editProduct = async (req, res, next) => {};
 }
 
