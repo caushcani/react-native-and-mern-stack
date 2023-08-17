@@ -4,7 +4,7 @@ import App from './src/app'
 
 
 const main = async () =>{
-    dotenv.config();
+    dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
     process.on("uncaughtException", (err) => {
         console.log("UNHALDED EXCEPTION! Server is shuting down...");
         console.log(err.name, err.message);

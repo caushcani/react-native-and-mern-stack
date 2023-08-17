@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 
 const SALT_ROUNDS = 10;
 
+//TODO: add types
 class UserController {
   static login = async (req, res, next) => {
     const { email, password } = req.body;
@@ -15,7 +16,7 @@ class UserController {
         return next(new AppError('Email not exists.', 409))
     }
 
-    const match = await bcrypt.compare(password,userWithEmailExists.password);
+    const match = await bcrypt.compare(password, userWithEmailExists.password);
     if(!match){
         return next(new AppError('Password not correct.', 409))
     }

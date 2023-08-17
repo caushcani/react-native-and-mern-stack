@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   View,
   ScrollView,
@@ -9,9 +10,22 @@ import {
 } from "react-native";
 import { Product } from "../components/Product";
 import { Color } from "../utils/Color";
-import products from "../utils/data.json";
 
 export const Products = () => {
+  const [products, setProducts] = useState(null);
+
+  const getProducts = async () => {
+    try {
+      const res = await axios.post("products/get-all");
+      if (res) {
+        setProducts(res.data.products);
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
   return (
     <View>
       <Text
@@ -67,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   listItem: {
-    height: 200,
+    height: 220,
     width: Dimensions.get("window").width / 2 - 16,
     backgroundColor: Color.white,
     margin: 8,

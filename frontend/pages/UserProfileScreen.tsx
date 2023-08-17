@@ -7,18 +7,24 @@ import {
   ScrollView,
 } from "react-native";
 import { CheckboxButtoon } from "../components/CheckboxButton";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { Button } from "../components/Button";
 import { Color } from "../utils/Color";
+import { AuthContext } from "../context/AuthProvider";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/redux/rootState";
 
 const USER_AVATAR =
   "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg";
 
 export const UserProfile = () => {
   const [gender, setGender] = useState("M");
+  const { logout } = useContext(AuthContext);
+
+  const user = useSelector((store: RootState) => store.user);
 
   return (
     <ScrollView bounces={false}>
@@ -51,7 +57,7 @@ export const UserProfile = () => {
           }}
         >
           <Text style={styles.profileText}>Name</Text>
-          <TextInput style={styles.input}></TextInput>
+          <TextInput style={styles.input}>{user && user.name}</TextInput>
         </View>
 
         {/* FORM - GENDER*/}
@@ -99,7 +105,7 @@ export const UserProfile = () => {
           }}
         >
           <Text style={styles.profileText}>Email</Text>
-          <TextInput style={styles.input}></TextInput>
+          <TextInput style={styles.input}>{user && user.email}</TextInput>
         </View>
 
         {/* FORM - AGE*/}
@@ -241,7 +247,9 @@ export const UserProfile = () => {
         >
           <Button
             title="Log Out"
-            onPress={() => {}}
+            onPress={() => {
+              logout();
+            }}
             style={styles.button}
             textStyle={{ color: Color.white }}
             icon={<Entypo name="log-out" color={Color.white} size={28} />}

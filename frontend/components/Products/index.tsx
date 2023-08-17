@@ -1,25 +1,33 @@
 import React from "react";
 import { View, FlatList, StyleSheet, Dimensions } from "react-native";
 import { Product } from "../Product";
-import products from "../../utils/data.json";
 import { Color } from "../../utils/Color";
-import { SafeAreaView } from "react-native-safe-area-context";
 
+interface IData {
+  name: string;
+  description: string;
+  price: number;
+  quanity: number;
+  image: string;
+  category: string;
+  subtitle?: string;
+}
 interface IProducts {
+  data: IData[];
   horizontalList: boolean;
 }
 
 export const Products = (props: IProducts) => {
-  const { horizontalList } = props;
+  const { horizontalList = false, data } = props;
   if (horizontalList) {
     return (
       <View>
-        {products && (
+        {data && (
           <FlatList
             contentContainerStyle={{ paddingBottom: 100 }}
             horizontal={true}
             key={"unike"}
-            data={products}
+            data={data}
             renderItem={({ item, index }) => {
               return (
                 <View style={styles.listItem} key={index}>
@@ -29,7 +37,7 @@ export const Products = (props: IProducts) => {
                     name={item.name}
                     price={item.price}
                     subtitle={item.subtitle}
-                    desc={item.desc}
+                    desc={item.description}
                     onClick={() => {}}
                   />
                 </View>
@@ -43,22 +51,22 @@ export const Products = (props: IProducts) => {
   } else {
     return (
       <View>
-        {products && (
+        {data && (
           <FlatList
             contentContainerStyle={{ paddingBottom: 100 }}
             numColumns={2}
             key={"unike"}
-            data={products}
+            data={data}
             renderItem={({ item, index }) => {
               return (
-                <View style={styles.listItem} key={index}>
+                <View style={styles.listItem} key={index + "AHAH"}>
                   <Product
                     key={item.name}
                     image={item.image}
-                    name={item.name}
+                    name={item.name + "J"}
                     price={item.price}
                     subtitle={item.subtitle}
-                    desc={item.desc}
+                    desc={item.description}
                     onClick={() => {}}
                   />
                 </View>
@@ -88,7 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   listItem: {
-    height: 200,
+    // height: 200,
     width: Dimensions.get("window").width / 2 - 16,
     backgroundColor: Color.white,
     margin: 3,

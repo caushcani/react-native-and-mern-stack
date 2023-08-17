@@ -6,6 +6,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import { Button } from "../Button";
 import { AirbnbRating } from "react-native-ratings";
 import { useRoute } from "@react-navigation/native";
+import { Color } from "../../utils/Color";
 
 const sizes = [
   {
@@ -39,7 +40,7 @@ export default function ProductDetail({ navigation }: any) {
   }, [navigation]);
 
   return (
-    <View style={{ flex: 1 }} key={name + desc}>
+    <View style={{ flex: 1, backgroundColor: Color.white }} key={name + desc}>
       {/* IMAGE */}
       <View
         style={{

@@ -1,12 +1,31 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { View, Text, TextInput, Image, StyleSheet } from "react-native";
-import login from "../assets/imgs/login.jpg";
 import { Button } from "../components/Button";
 import LottieView from "lottie-react-native";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/store/user.store";
+import { AuthContext } from "../context/AuthProvider";
 
 const Login = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useContext(AuthContext);
+
+  const dispatch = useDispatch();
+
+  const handleLogin = async () => {
+    try {
+      const res: any = await axios.post("auth/login", { email, password });
+      if (res.data) {
+        dispatch(setUser(res.data.access_token));
+        login(res.data.access_token);
+      }
+    } catch (error) {
+      console.log("ERROR", error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -47,14 +66,14 @@ const Login = ({ navigation }: any) => {
       />
       <Button
         title="Login"
-        onPress={() => navigation.navigate("Products")}
+        onPress={() => handleLogin()}
         textStyle={styles.text}
       />
       <View style={styles.noAccount}>
         <Text>Don't have an account?</Text>
         <Text
           style={styles.register}
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate("Products")}
         >
           Register
         </Text>

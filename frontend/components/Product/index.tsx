@@ -6,7 +6,7 @@ interface IProductProp {
   image: string;
   price: number;
   desc: string;
-  subtitle: string;
+  subtitle?: string;
   onClick: any;
 }
 
@@ -32,26 +32,36 @@ export const Product = (props: IProductProp) => {
         <View
           style={{
             display: "flex",
+            justifyContent: "space-between",
             flexDirection: "column",
             alignItems: "center",
             padding: 10,
           }}
         >
-          <Text
+          <View>
+            <Text
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              {name}
+            </Text>
+          </View>
+
+          <View
             style={{
-              fontWeight: "bold",
+              justifyContent: "flex-end",
             }}
           >
-            {name}
-          </Text>
-          <Text>{subtitle}</Text>
-          <Text
-            style={{
-              fontWeight: "bold",
-            }}
-          >
-            €{price}
-          </Text>
+            <Text
+              style={{
+                fontWeight: "bold",
+                alignSelf: "flex-end",
+              }}
+            >
+              €{price}
+            </Text>
+          </View>
         </View>
       </View>
     </Pressable>

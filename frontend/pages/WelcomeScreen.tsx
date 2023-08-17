@@ -1,14 +1,33 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import { Categories } from "../components/Categories";
 import { Filter } from "../components/FilterIcon";
 import { InputIcon } from "../components/InputIcon";
 import { ProductPreview } from "../components/ProductPreview";
 import { Products } from "../components/Products";
 import { SafeAreaView } from "react-native-safe-area-context";
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 export const WelcomeScreen = () => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [products, setProducts] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("Dresses");
+  const navigation = useNavigation();
+  const topProducts = async (category: string) => {
+    try {
+      const res = await axios.post("products/get-all", {
+        category: category.toLocaleLowerCase(),
+      });
+      if (res) {
+        setProducts(res.data.products);
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    topProducts(selectedCategory);
+  }, [selectedCategory]);
+
   return (
     <SafeAreaView
       style={{
@@ -85,17 +104,19 @@ export const WelcomeScreen = () => {
             >
               Top {selectedCategory}
             </Text>
-            <Text
-              style={{
-                fontSize: 16,
-                color: "gray",
-              }}
-            >
-              View All
-            </Text>
+            <Pressable onPress={() => navigation.navigate("Products")}>
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: "gray",
+                }}
+              >
+                View All
+              </Text>
+            </Pressable>
           </View>
 
-          <Products horizontalList={true} />
+          {products && <Products horizontalList={true} data={products} />}
         </View>
       </ScrollView>
     </SafeAreaView>

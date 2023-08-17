@@ -16,7 +16,7 @@ const categories = [
     isActive: false,
   },
   {
-    name: "Shoese",
+    name: "Shoes",
     isActive: false,
   },
 ];

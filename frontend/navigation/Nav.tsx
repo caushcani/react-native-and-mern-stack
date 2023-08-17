@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import Entypo from "react-native-vector-icons/Entypo";
 import { Products } from "../pages/ProductsScreen";
@@ -11,14 +11,16 @@ import GoBack from "../components/GoBack";
 import StackNav from "./StackNav";
 import { Color } from "../utils/Color";
 import OnboardingNav from "./Onboarding";
+import { AuthContext } from "../context/AuthProvider";
 
 const Tab = createBottomTabNavigator();
 
 const Nav = () => {
-  const isLoggedIn = false;
+  const { token } = useContext(AuthContext);
+
   return (
     <NavigationContainer>
-      {isLoggedIn ? (
+      {token !== null ? (
         <>
           <Tab.Navigator
             screenOptions={({ route }) => ({
