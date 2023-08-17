@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 
 interface IProductProp {
+  id: string;
   name: string;
   image: string;
   price: number;
@@ -11,13 +12,20 @@ interface IProductProp {
 }
 
 export const Product = (props: IProductProp) => {
-  const { name, image, price, desc, onClick, subtitle } = props;
-  const nav = useNavigation();
+  const { name, image, price, desc, onClick, subtitle, id } = props;
+  const nav = useNavigation<any>();
 
   return (
     <Pressable
       onPress={() =>
-        nav.navigate("ProductDetail", { name, image, price, desc, subtitle })
+        nav.navigate("ProductDetail", {
+          name,
+          image,
+          price,
+          desc,
+          subtitle,
+          id,
+        })
       }
     >
       <View>

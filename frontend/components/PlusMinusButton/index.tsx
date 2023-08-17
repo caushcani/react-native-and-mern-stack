@@ -2,12 +2,14 @@ import { View, Pressable, Text } from "react-native";
 import { useState, useEffect } from "react";
 
 interface IPlusMinusButton {
+  value: number;
   onPress: (val: number) => void;
 }
 export const PlusMinusButton = (props: IPlusMinusButton) => {
-  const { onPress } = props;
+  const { onPress, value } = props;
+  console.log("value", value);
 
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(value !== null ? value : 1);
 
   useEffect(() => {
     if (onPress) {

@@ -47,6 +47,7 @@ export const Products = () => {
             return (
               <View style={styles.listItem}>
                 <Product
+                  id={item._id}
                   key={item.name}
                   subtitle={item.subtitle}
                   image={item.image}

@@ -8,10 +8,11 @@ interface ICartProduct {
   price: number;
   image: string;
   desc: string;
+  defaultQuantity: number;
   onQuantityChange: (val: number) => void;
 }
 export const CartProduct = (props: ICartProduct) => {
-  const { image, name, price, desc, onQuantityChange } = props;
+  const { image, name, price, desc, onQuantityChange, defaultQuantity } = props;
   return (
     <View
       style={[
@@ -26,6 +27,7 @@ export const CartProduct = (props: ICartProduct) => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
+          flex: 1,
         }}
       >
         <Image source={{ uri: image }} width={100} height={100} />
@@ -36,7 +38,9 @@ export const CartProduct = (props: ICartProduct) => {
           }}
         >
           <View>
-            <Text style={styles.text}>{name}</Text>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.text}>{name}</Text>
+            </View>
             <Text
               style={{
                 fontSize: 16,
@@ -55,20 +59,22 @@ export const CartProduct = (props: ICartProduct) => {
         </View>
       </View>
 
-      <View
-        style={{
-          flexDirection: "column-reverse",
-        }}
-      >
-        <PlusMinusButton
-          onPress={(val) => {
-            if (onQuantityChange) {
-              onQuantityChange(val);
-            }
+      {defaultQuantity && (
+        <View
+          style={{
+            flexDirection: "column-reverse",
           }}
-        />
-      </View>
-      {/* <Divider color="gray" width={1} marginHorizontal={8} /> */}
+        >
+          <PlusMinusButton
+            value={defaultQuantity}
+            onPress={(val) => {
+              if (onQuantityChange) {
+                onQuantityChange(val);
+              }
+            }}
+          />
+        </View>
+      )}
     </View>
   );
 };

@@ -2,8 +2,10 @@ import React from "react";
 import { View, FlatList, StyleSheet, Dimensions } from "react-native";
 import { Product } from "../Product";
 import { Color } from "../../utils/Color";
+import { listenerCancelled } from "@reduxjs/toolkit/dist/listenerMiddleware/exceptions";
 
 interface IData {
+  _id: string;
   name: string;
   description: string;
   price: number;
@@ -32,6 +34,7 @@ export const Products = (props: IProducts) => {
               return (
                 <View style={styles.listItem} key={index}>
                   <Product
+                    id={item._id}
                     key={item.name}
                     image={item.image}
                     name={item.name}

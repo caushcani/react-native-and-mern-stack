@@ -7,6 +7,8 @@ import { Button } from "../Button";
 import { AirbnbRating } from "react-native-ratings";
 import { useRoute } from "@react-navigation/native";
 import { Color } from "../../utils/Color";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/store/cart.store";
 
 const sizes = [
   {
@@ -21,11 +23,11 @@ const sizes = [
 ];
 
 export default function ProductDetail({ navigation }: any) {
+  const nav = useRoute<any>();
+  const { desc, name, price, image, id } = nav.params;
   const [selectedSize, setSelectedSize] = useState("S");
   const [like, setLike] = useState(false);
-  const nav = useRoute<any>();
-
-  const { desc, name, price, image } = nav.params;
+  const disptach = useDispatch();
 
   useEffect(() => {
     navigation.getParent()?.setOptions({
@@ -167,7 +169,9 @@ export default function ProductDetail({ navigation }: any) {
           <Button
             title="Add to cart"
             textStyle={{ color: "white" }}
-            onPress={() => {}}
+            onPress={() => {
+              disptach(addToCart({ name, price, image, id }));
+            }}
             icon={<Entypo name="shopping-bag" size={20} color="white" />}
           />
         </View>

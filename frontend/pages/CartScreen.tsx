@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, StyleSheet, SafeAreaView } from "react-native";
+import { useSelector } from "react-redux";
 import { Button } from "../components/Button";
 import { CartProduct } from "../components/CartProduct";
 import { Divider } from "../components/Divider";
+import { RootState } from "../store/redux/rootState";
 import { Color } from "../utils/Color";
 
 const productsInCart = [
@@ -24,6 +26,8 @@ const productsInCart = [
 
 export const CartScreen = () => {
   const [total, setTotal] = useState(0);
+  const { products } = useSelector((store: RootState) => store.cart);
+  console.log("CartStore", products);
 
   return (
     <SafeAreaView
@@ -50,19 +54,26 @@ export const CartScreen = () => {
           My Cart
         </Text>
         <FlatList
-          data={productsInCart}
+          data={products}
           style={{}}
           renderItem={({ item }) => {
+            console.log("ITEM", item);
             return (
               <CartProduct
                 name={item.name}
                 price={item.price}
                 image={item.image}
                 desc={item.desc}
+                defaultQuantity={item.quantity}
                 onQuantityChange={(val) => setTotal(val)}
               />
             );
           }}
+          ListEmptyComponent={
+            <View>
+              <Text>No items in cart.</Text>
+            </View>
+          }
         />
 
         <View
