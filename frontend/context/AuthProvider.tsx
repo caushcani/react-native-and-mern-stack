@@ -17,9 +17,10 @@ const AuthProvider = ({ children }: any) => {
   const [token, setToken] = useState<any>(null);
   const dispatch = useDispatch();
 
-  const login = (val: string) => {
-    AsyncStorage.setItem("access_token", val);
-    setToken(val);
+  const login = (access_token: string, refresh_token: string) => {
+    AsyncStorage.setItem("access_token", access_token);
+    AsyncStorage.setItem("refresh_token", refresh_token);
+    setToken(access_token);
   };
 
   const logout = () => {

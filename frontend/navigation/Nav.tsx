@@ -17,6 +17,7 @@ const Tab = createBottomTabNavigator();
 
 const Nav = () => {
   const { token } = useContext(AuthContext);
+  console.log("token", token);
 
   return (
     <NavigationContainer>

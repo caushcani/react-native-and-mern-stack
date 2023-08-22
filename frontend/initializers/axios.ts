@@ -53,18 +53,17 @@ const axiosInit = async () => {
       if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
         try {
-          //   const res = await AuthManager.refreshToken(
-          //     JwtManager.accessToken,
-          //     JwtManager.refreshToken
-          //   );
-          //   if (res && res.accessToken && res.refreshToken) {
-          //     originalRequest.headers.Authorization = `Bearer ${res.accessToken}`;
-          //     originalRequest.headers['Accept-Language'] = AppStorageManager.getItem('i18nextLng')
-          //     return axios(originalRequest);
-          //   }
-          //   clearSession();
+          const refreshToken = await AsyncStorage.getItem("refresh_token");
+          const res = await axios.post('auth/refresh-token',{
+            token: refreshToken
+          })
+          if (res && res.data) {
+            AsyncStorage.setItem("access_token", res.data.access_token);
+            AsyncStorage.setItem("refresh_token", res.data.refresh_token);
+              originalRequest.headers.Authorization = `Bearer ${res.data.access_token}`;
+              return axios(originalRequest);
+            }
         } catch {
-          //   clearSession();
         }
       }
       if (error.response.data?.Message) {

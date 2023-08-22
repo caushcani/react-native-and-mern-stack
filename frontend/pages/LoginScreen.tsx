@@ -1,5 +1,13 @@
-import { useContext, useState } from "react";
-import { View, Text, TextInput, Image, StyleSheet } from "react-native";
+import React, { useContext, useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import { Button } from "../components/Button";
 import LottieView from "lottie-react-native";
 import axios from "axios";
@@ -16,10 +24,15 @@ const Login = ({ navigation }: any) => {
 
   const handleLogin = async () => {
     try {
-      const res: any = await axios.post("auth/login", { email, password });
+      const res: {
+        data: {
+          access_token: string;
+          refresh_token: string;
+        };
+      } = await axios.post("auth/login", { email, password });
       if (res.data) {
         dispatch(setUser(res.data.access_token));
-        login(res.data.access_token);
+        login(res.data.access_token, res.data.refresh_token);
       }
     } catch (error) {
       console.log("ERROR", error);
@@ -53,17 +66,29 @@ const Login = ({ navigation }: any) => {
         </View>
       </View>
 
-      <TextInput
-        style={styles.input}
-        onChangeText={(val) => setEmail(val)}
-        placeholder="Email"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={(val) => setPassword(val)}
-        secureTextEntry={true}
-        placeholder="Password"
-      />
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <TextInput
+          style={styles.input}
+          onChangeText={(val) => setEmail(val)}
+          placeholder="Email"
+        />
+      </KeyboardAvoidingView>
+
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <TextInput
+          style={styles.input}
+          onChangeText={(val) => setPassword(val)}
+          secureTextEntry={true}
+          placeholder="Password"
+        />
+      </KeyboardAvoidingView>
+
       <Button
         title="Login"
         onPress={() => handleLogin()}

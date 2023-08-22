@@ -27,8 +27,6 @@ const productsInCart = [
 export const CartScreen = () => {
   const [total, setTotal] = useState(0);
   const { products } = useSelector((store: RootState) => store.cart);
-  console.log("CartStore", products);
-
   return (
     <SafeAreaView
       style={{
@@ -57,7 +55,6 @@ export const CartScreen = () => {
           data={products}
           style={{}}
           renderItem={({ item }) => {
-            console.log("ITEM", item);
             return (
               <CartProduct
                 name={item.name}
