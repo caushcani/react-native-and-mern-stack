@@ -1,9 +1,8 @@
 import Order from "../models/order.model";
 import Product from "../models/product.model";
 import { AppError } from "../utils/appError";
-const {
-  Types: { ObjectId: ObjectId },
-} = require("mongoose");
+import mongoose from "mongoose";
+
 
 class OrderController {
   static createOrder = async (req, res, next) => {
@@ -13,60 +12,20 @@ class OrderController {
       orderData: data,
     });
 
-    //update products quantity
-    // data.forEach(async(el) => {
-    //   await Product.findOneAndUpdate(
-    //     {
-    //       _id: el.productId,
-    //     },
-    //     {
-    //       $inc: { quantity: -el.quantity },
-    //     }
-    //   );
-    // });
-
-    //update products quantity
-    //TODO: fix, not working
     try {
-      const a = await Product.updateMany(
-        {
-          _id: {
-            $in: data.map(d => d.productId),
-          }, // filter by product ids in data array
-        },
-        [
-          {
-            $set: {
-              quantity: {
-                $subtract: [
-                  "$quantity", // current quantity of the product
-                  {
-                    $arrayElemAt: [
-                      // find the quantity from the data array that matches the product id
-                      {
-                        $map: {
-                          input: {
-                            $filter: {
-                              input: data,
-                              as: "el",
-                              cond: { $eq: ["$$el.productId", "$_id"] },
-                            },
-                          },
-                          as: "el",
-                          in: "$$el.quantity",
-                        },
-                      },
-                      0,
-                    ],
-                  },
-                ],
-              },
-            },
-          },
-        ]
-      );
+      const productUpdates = data.map(item => ({
+        id: new mongoose.Types.ObjectId(item.productId),
+        quantity: item.quantity
+      }));
+      const bulkUpdateOperations = productUpdates.map(update => ({
+        updateOne: {
+          filter: { _id: update.id },
+          update: { $inc: { quantity: -update.quantity } }
+        }
+      }));
 
-      console.log("A", a);
+      await Product.bulkWrite(bulkUpdateOperations);
+
 
       //now, save order
       await order.save();

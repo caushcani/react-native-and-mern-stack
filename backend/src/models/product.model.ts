@@ -21,5 +21,11 @@ const productSchema = new Schema({
     }
 })
 
+
+//include string fields in the index
+productSchema.index({
+    "$**":"text"
+})
+
 const Product = model('Product', productSchema);
 export default Product;
