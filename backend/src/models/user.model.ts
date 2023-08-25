@@ -5,10 +5,17 @@ const UserSchema = new Schema({
         type:String
     },
     email:{
-        type:String
+        type:String,
+        unique:true
     },
     password:{
         type: String
+    },
+    refresh_token:{
+        type:String
+    },
+    refresh_token_expiry:{
+        type: Date
     }
 });
 

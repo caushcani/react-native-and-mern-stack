@@ -5,7 +5,7 @@ import helmet from "helmet";
 import routes from "./routes";
 import { AppError } from "./utils/appError";
 import { globalErrorHandler } from "./controllers/errorController";
-import cors from "cors";
+import {Request, Response, NextFunction} from 'express';
 
 const App = express();
 
@@ -42,16 +42,10 @@ App.use(
 App.use(express.urlencoded({ extended: true, limit: "10kb" }));
 App.use(cookieParser());
 
-// toFix define type for res/req/next
-App.use((req: any, res: any, next: any) => {
-  req.requestTime = new Date().toISOString();
-  next();
-});
-
 //routes handles all api routes
 App.use("/api", routes);
 
-App.all("*", (req: any, res: any, next: any) => {
+App.all("*", (req: Request, res: Response, next: NextFunction) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server.`, 404));
 });
 

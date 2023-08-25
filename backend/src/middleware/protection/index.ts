@@ -1,9 +1,18 @@
 import User from '../../models/user.model';
 import { AppError } from "../../utils/appError";
 import jwt from "jsonwebtoken";
+import { Request, Response, NextFunction } from 'express';
 
-const decodedToken = async (req: any, res: any, next: any) => {
-  let token: any;
+interface IDecoded{
+  id: string,
+  name: string,
+  email: string,
+  exp: number,
+  iat: number
+}
+
+const decodedToken = async (req: Request, res: Response, next: NextFunction): Promise<IDecoded | any> => {
+  let token: string;
   if (
     req.headers &&
     req.headers.authorization &&
@@ -11,14 +20,14 @@ const decodedToken = async (req: any, res: any, next: any) => {
   ) {
     token = req.headers.authorization.split(" ")[1];
   }
-
+  
   if (!token) {
     return next(
       new AppError("You are not logged in! Please log in to get access.", 401)
     );
   }
 
-  const decoded: any = await new Promise((resolve) => {
+  const decoded = await new Promise((resolve) => {
     try {
       resolve(jwt.verify(token, process.env.JWT_SECRET));
     } catch (e) {
@@ -27,9 +36,8 @@ const decodedToken = async (req: any, res: any, next: any) => {
   });
   return decoded;
 };
-
-const protect = async (req: any, res: any, next: any) => {
-  const decoded: any = await decodedToken(req, res, next);
+const protect = async (req: Request, res: Response, next: NextFunction) => {
+  const decoded: IDecoded = await decodedToken(req, res, next);
   const userExists = await User.findById(decoded.id);
 
   if (!userExists) {
